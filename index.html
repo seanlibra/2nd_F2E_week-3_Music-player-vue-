@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
+</head>
+
+<body>
+    <section class="d-flex justify-content-center align-items-center wraper">
+        <div id="Music_player" class="Music_player">
+            <div class="d-flex">
+                <div class="Music_sidebar">
+                    <h1 class="logo">MU MUSIC</h1>
+                    <a href="#"><i class="far fa-eye"></i></i>BROWSE</a>
+                    <a href="#"><i class="fas fa-broadcast-tower"></i>RADIO</a>
+                    <a href="#"><i class="far fa-list-alt"></i>PLAYLISTS</a>
+                    <ul>
+                        <li>Vocal Cover</li>
+                        <li>Funk</li>
+                        <li>Jazz</li>
+                        <li>Korea POP</li>
+                        <li>Mandanin POP</li>
+                        <li>Piano Moods</li>
+                        <li>Relax</li>
+                    </ul>
+                </div>
+                <div class="Music_main">
+                    <div class="d-flex flex-column justify-content-between main_top">
+                        <div class="d-flex justify-content-between">
+                            <input class="search" placeholder="Search" type="text">
+                            <div class="user_group d-flex align-items-center">
+                                <span>Sean</span>
+                                <a href="#"></a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <h2 class="album_title">Sunny Summer</h2>
+                            <div class="album_btn">
+                                <a href="#">PLAY</a>
+                                <a href="#">FOLLOWING</a>
+                                <a href="#"><i style="font-size: 4px;" class="far fa-bookmark"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_bottom">
+                        <ul class="toggel_list d-flex">
+                            <li><a :class="{'active':page == 'all'}" @click="page = 'all'" href="#">ALL SONGS</a></li>
+                            <li><a :class="{'active':page == 'recommends'}" @click="page = 'recommends'" href="#">RECOMMENDS</a></li>
+                            <li><a :class="{'active':page == 'collection'}" @click="page = 'collection'" href="#">COLLECTION</a></li>
+                            <li><a :class="{'active':page == 'about'}" @click="page = 'about'" href="#">ABOUT</a></li>
+                        </ul>
+                        <ul class="song_list">
+                            <li @dblclick="play(song)" v-for="(song,index) in songs_list"
+                                :class="index === current_index ? 'active' : ''">
+                                <a :class="index === current_index && isplaying ? 'play_wave':'' " href="#"></a>
+                                <a href="#"><i class="fas fa-heart"></i></a>
+                                <span class="song_title">{{song.title}}</span>
+                                <span>{{setSecond(song.second)}}</span>
+                                <span class="point">4,077,608</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="now_play">
+                <div @click.self="seek" class="progress" style="height: 3px;">
+                    <div @click.stop="inner_seek" class="progress-bar" role="progressbar" style="background:#02f0f0"
+                        :style="{width:nowPlaying_bar + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+                <div class="d-flex ">
+                    <img class="sub_album_title" :src="current.cover">
+                    <div class="d-flex flex-column justify-content-center pl-2" style="width: 15%;">
+                        <p>{{current.artist}}</p>
+                        <p style="font-size: 12px;">{{current.title}}</p>
+                    </div>
+                    <div style="width: 10%;margin-right:10px" class="d-flex align-items-center">
+                        <span>{{setSecond(currentTime)}}</span>
+                        <span style="margin: 0 5px;">/</span>
+                        <span>{{setSecond(current.second)}}</span>
+                    </div>
+                    <div style="width: 50%;" class="control_group d-flex align-items-center justify-content-center">
+                        <a @click.prevent="loop = !loop" :class="{'loop_btn':loop}" href="#"><i
+                                class="fas fa-circle-notch"></i></a>
+                        <a @click.prevent="prev" href="#"><i class="fas fa-step-backward"></i></a>
+                        <a @click.prevent="play" href="#" class="play_btn" :class="{'d-none':isplaying}"><i
+                                class="fas fa-play"></i></a>
+                        <a @click.prevent="pause" href="#" class="pause_btn" :class="{'d-none':!isplaying}"><i
+                                class="fas fa-pause"></i></a>
+                        <a @click.prevent="next" href="#"><i class="fas fa-step-forward"></i></a>
+                        <a href="#"><i class="fas fa-random"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center px-3" style="width:15%">
+                        <a @click="setMute" v-if="mute == false" class="pr-1" style="color:#818181" href="#"><i class="fas fa-volume-down mr-1"></i></a>
+                        <a @click="cancelMute" v-else  class="pr-1" style="color:#818181" href="#"><i class="fas fa-volume-mute"></i></a>
+                        <div @click.self="setVolume" class="progress_bar_outer" style="cursor: pointer;border-radius:0% ;">
+                            <div  @click.stop="inner_setVolume" class="progress_bar_inner" :style="{width:CompVolume * 100 + '%'}"></div>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="ad d-flex flex-column justify-content-end p-5">
+            <h3>Go Premium,Be Happy</h3>
+            <span>Try Premium free for 30 days,Only 4.99 USD/month after</span>
+            <div><a href="#">REGIST NOW</a></div>
+        </div> -->
+    </section>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="all.js"></script>
+
+</body>
+
+</html>

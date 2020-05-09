@@ -1,0 +1,235 @@
+body,html {
+    height: 100%;
+    font-family: 'Roboto',;
+    font-weight:500;
+}
+ul,li,h1,p{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.wraper {
+    height: 100%;
+    background:  #acacac;
+}
+.Music_player {
+    margin: 0 auto;
+    background: #acacac;
+    width: 960px;
+    max-height:720px;
+    box-shadow: 12px 12px 7px rgba(0, 0, 0, 0.7);
+    
+}
+.logo {
+    font-size: 20px;
+    color:#02f0f0;
+    padding:10px 0 10px 45px;
+}
+.Music_sidebar {
+    width: 20%;
+    height: 540px;
+    background: #141414;
+}
+.Music_sidebar a {
+    text-decoration: none;
+    color:#fff;
+    display: block;
+    padding:5px 0px 5px 20px;
+}
+.Music_sidebar i {
+    padding-right:7px;
+}
+.Music_sidebar li {
+    color:#A9A9A9;
+    padding:5px 0 0 45px;
+}
+.Music_main {
+    width: 80%;
+}
+.main_top {
+    height: 50%;
+    background:url('https://images.unsplash.com/photo-1458560871784-56d23406c091?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80');
+    background-size: cover;
+    background-position: bottom;
+    padding: 20px;
+}
+.search {
+    opacity: 0.3;
+    border-radius:15px;
+    border: none;
+    padding:3px 0 3px 10px;
+    font-size: 14px;
+    
+}
+.main_bottom {
+    height: 50%;
+    background: #0f0f0f;
+    border-left: 1px solid  #141414;
+}
+.album_title {
+    color:#fff;
+    opacity: 0.5;
+    font-size: 56px;
+    letter-spacing:3px;
+}
+.album_btn a {
+    font-size: 14px;
+    border:1px solid  #00caca;
+    color:#fff;
+    
+   
+    border-radius:15px;
+    text-decoration: none;
+}
+.album_btn a:nth-child(1){
+    background:#00caca;
+    padding:3px 30px;
+}
+.album_btn a:nth-child(2){
+    padding:3px 10px;
+}
+.album_btn a:nth-child(3){
+    padding:3px 8px;
+    border-radius:50%
+}
+.user_group span {
+  color:#fff;
+}
+.user_group a {
+  display: inline-block;
+  width:35px;
+  height: 35px;
+  background: url('https://randomuser.me/api/portraits/men/11.jpg');
+  background-size:cover ;
+  border-radius:17.5px;
+  border: 1px solid #FFF;
+  margin-left: 10px;
+}
+.toggel_list {
+    background: #0f0f0f;
+    padding-left:18px;
+}
+.toggel_list li {
+    padding:7px 10px 10px 10px;
+   
+}
+.toggel_list a {
+    color:#A9A9A9;
+    text-decoration: none;
+    padding-bottom: 10px;
+    border-bottom: 2px solid transparent;
+}
+.toggel_list a:hover{
+    border-bottom: 2px solid #02f0f0;
+    color:#fff;
+}
+.toggel_list a.active {
+    border-bottom: 2px solid #02f0f0;
+}
+.song_list li:nth-child(1){
+    border-top: 1px solid  #141414;
+}
+.song_list li {
+   
+    border-bottom:1px solid #141414;
+    font-size: 14px;
+    padding:7px 25px 7px 25px;
+    cursor: pointer;
+}
+.song_list li:hover a,.song_list li:hover span{
+    color:#fff;
+}
+.song_list a {
+    color:#A9A9A9;
+    width: 5%;
+    display: inline-block;
+    text-decoration: none;
+}
+.song_list span{
+    display: inline-block;
+    width:15%;
+}
+.song_list .song_title {
+    width:55%;
+    color:#A9A9A9;
+}
+.song_list li.active{
+    background: #272727;
+}
+.song_list span {
+    color:#A9A9A9;
+}
+.play_wave{
+    background: url('./assets/img/wave.gif') no-repeat center center;
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+}
+.point {
+    text-align: right;
+}
+.now_play {
+    background: #141414;
+    color:#A9A9A9;
+}
+.sub_album_title {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    /* background: url('https://pbs.twimg.com/media/DWisZkyW4AEozcR.jpg'); */
+    background-size: cover;
+}
+.control_group a{
+ display: inline-block;
+ font-size: 18px;
+ color:#FFF;
+ margin: 0 20px;
+}
+.play_btn{
+    border: 2px solid #818181;
+    padding: 7px 12px;
+    border-radius: 50%;
+} 
+.pause_btn{
+    border: 2px solid #818181;
+    padding: 7px 12px;
+    border-radius: 50%;
+} 
+.loop_btn {
+    color:#02f0f0!important;
+}
+.progress {
+    cursor: pointer;
+}
+.progress_bar_outer{
+    height: 5px;
+    width: 100%;
+    background: #393939;
+    border-radius: 0.25rem;
+}
+.progress_bar_inner {
+    height: 5px;
+    width: 50%;
+    background: #aaaaaa;
+}
+/* .ad {
+    height:500px;
+    width: 780px;
+    background: url('https://images.unsplash.com/photo-1522791786121-a54e01e549c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80');
+    color:#fff;
+    border-radius: 3%;
+    transform: translateX(-960px);
+} */
+/* .ad h3 {
+    font-size: 48px;
+}
+.ad span {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+.ad a {
+   color:#fff;
+   background:#00caca;
+   padding:5px 20px 5px 20px;
+   border-radius: 20px;
+} */
